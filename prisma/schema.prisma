@@ -1,0 +1,70 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Party {
+  id              String      @id @default(cuid())
+  name            String
+  vision          String?
+  mission         String?
+  goals           String?
+  filename        String?
+  number_of_votes Int?        @default(0)
+  candidates      Candidate[]
+
+  @@map("Party")
+}
+
+enum Year {
+  FRESHMAN
+  SOPHOMORE
+  JUNIOR
+  SENIOR
+}
+
+model Candidate {
+  id              String  @id @default(cuid())
+  name            String
+  year            Year
+  age             Int
+  position        String
+  party_id        String
+  credentials     String?
+  advocacy        String?
+  course          String
+  img_url         String?
+  filename        String?
+  number_of_votes Int?    @default(0)
+
+  party Party @relation(fields: [party_id], references: [id], onDelete: Cascade)
+
+  @@map("Candidate")
+}
+
+enum Role {
+  ADMIN
+  VOTER
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  password     String
+  name         String
+  role         Role?    @default(VOTER)
+  year         Year?
+  course       String?
+  hasVoted     Boolean? @default(false)
+  vote_history String?
+}

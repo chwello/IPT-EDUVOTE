@@ -1,0 +1,52 @@
+{
+  "name": "eduvote",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "generate": "npx prisma generate",
+    "migrate": "npx prisma migrate dev",
+    "prepare": "husky install"
+  },
+  "dependencies": {
+    "@next-auth/prisma-adapter": "^0.4.4-canary.81",
+    "@prisma/client": "^5.12.1",
+    "@supabase/supabase-js": "^2.42.4",
+    "@tanstack/react-query": "^5.29.0",
+    "antd": "^5.16.1",
+    "axios": "^1.6.8",
+    "base64-arraybuffer": "^1.0.2",
+    "bcrypt": "^5.1.1",
+    "chart.js": "^4.4.2",
+    "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
+    "lucide-react": "^0.368.0",
+    "next": "14.1.4",
+    "next-auth": "^4.24.7",
+    "randomcolor": "^0.6.2",
+    "react": "^18",
+    "react-chartjs-2": "^5.2.0",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "20.12.6",
+    "@types/react": "18.2.75",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.4",
+    "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
+    "postcss": "^8",
+    "prettier": "^3.2.5",
+    "prisma": "^5.12.1",
+    "tailwindcss": "^3.3.0",
+    "typescript": "5.4.4"
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css,md, jsx}": "prettier --write"
+  }
+}
